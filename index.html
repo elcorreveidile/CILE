@@ -6,32 +6,47 @@
     <title>Intensivo 3 - Curso de Español Nivel A2.1</title>
     <meta name="description" content="Curso intensivo de español nivel A2.1. 4 semanas de inmersión total en el idioma con horario flexible y metodología comunicativa.">
     <meta name="keywords" content="curso español, A2.1, intensivo, aprender español, DELE">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intensivo 3 - Curso de Español Nivel A2.1 | CLM-UGR">
+    <meta property="og:description" content="Curso intensivo de español nivel A2.1 en el Centro de Lenguas Modernas de la Universidad de Granada. 55 horas lectivas en 4 semanas.">
+    <meta property="og:site_name" content="CLM-UGR Intensivo 3">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intensivo 3 - Curso de Español Nivel A2.1">
+    <meta name="twitter:description" content="Curso intensivo de español nivel A2.1 en el Centro de Lenguas Modernas de la Universidad de Granada.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23E30613'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white'>I3</text></svg>">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar" role="navigation" aria-label="Navegación principal">
             <div class="nav-brand">
-                <div class="logo">I3</div>
+                <div class="logo" aria-label="Logo Intensivo 3">I3</div>
                 <div class="brand-text">
                     <h1>Intensivo 3</h1>
                     <p>Curso de Español Nivel A2.1</p>
                 </div>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#horario">Horario</a></li>
-                <li><a href="#programa">Programa</a></li>
-                <li><a href="#metodologia">Metodología</a></li>
-                <li><a href="#alumnos">Alumnos CLM</a></li>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#inicio" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="#horario" role="menuitem">Horario</a></li>
+                <li role="none"><a href="#programa" role="menuitem">Programa</a></li>
+                <li role="none"><a href="#metodologia" role="menuitem">Metodología</a></li>
+                <li role="none"><a href="#alumnos" role="menuitem">Alumnos CLM</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" aria-label="Menú de navegación" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 
@@ -72,7 +87,7 @@
             <div class="highlight-box">
                 <h3>🎓 ¡Bienvenidos al CLM!</h3>
                 <p>Curso intensivo para alumnos del Centro de Lenguas Modernas de la Universidad de Granada</p>
-                <a href="#alumnos" class="btn btn-primary">Ver Información del Curso</a>
+                <a href="#alumnos" class="btn btn-primary" aria-label="Ver información completa del curso Intensivo 3">Ver Información del Curso</a>
             </div>
         </div>
     </section>
@@ -486,10 +501,10 @@
             <div class="footer-section">
                 <h4>Universidad de Granada</h4>
                 <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <a href="https://clm.ugr.es" target="_blank" style="font-size: 1.5rem;"><i class="fas fa-university"></i></a>
-                    <a href="https://ugr.es" target="_blank" style="font-size: 1.5rem;"><i class="fas fa-globe"></i></a>
-                    <a href="https://facebook.com/CLMUGR" target="_blank" style="font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
-                    <a href="https://twitter.com/UGR" target="_blank" style="font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                    <a href="https://clm.ugr.es" target="_blank" rel="noopener noreferrer" style="font-size: 1.5rem;" aria-label="Visitar sitio web del Centro de Lenguas Modernas"><i class="fas fa-university"></i></a>
+                    <a href="https://ugr.es" target="_blank" rel="noopener noreferrer" style="font-size: 1.5rem;" aria-label="Visitar sitio web de la Universidad de Granada"><i class="fas fa-globe"></i></a>
+                    <a href="https://facebook.com/CLMUGR" target="_blank" rel="noopener noreferrer" style="font-size: 1.5rem;" aria-label="Seguir en Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/UGR" target="_blank" rel="noopener noreferrer" style="font-size: 1.5rem;" aria-label="Seguir en Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>

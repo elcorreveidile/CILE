@@ -117,6 +117,9 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
 }
 
 .hamburger span {
@@ -125,6 +128,7 @@ body {
     background: var(--text-dark);
     margin: 3px 0;
     transition: 0.3s;
+    display: block;
 }
 
 /* Hero section */
@@ -506,15 +510,15 @@ body {
         display: flex;
     }
 
-    .hamburger.active .span:nth-child(2) {
+    .hamburger.active span:nth-child(2) {
         opacity: 0;
     }
 
-    .hamburger.active .span:nth-child(1) {
+    .hamburger.active span:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
     }
 
-    .hamburger.active .span:nth-child(3) {
+    .hamburger.active span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
     }
 

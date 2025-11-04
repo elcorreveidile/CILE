@@ -4,8 +4,9 @@ const navMenu = document.querySelector('.nav-menu');
 
 // Toggle Mobile Menu
 hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
+    const isActive = hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isActive);
 });
 
 // Close mobile menu when clicking on a link
@@ -13,6 +14,7 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
     });
 });
 
@@ -142,6 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
+    // Track page view
+    trackEvent('page_view', {
+        page: 'intensivo-3-home',
+        timestamp: new Date().toISOString()
+    });
+
     // Initialize tooltips
     const tooltips = document.querySelectorAll('[data-tooltip]');
     tooltips.forEach(element => {
@@ -171,14 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // Add UGR branding enhancement
-    const logo = document.querySelector('.logo');
-    if (logo) {
-        logo.style.background = 'linear-gradient(135deg, #E30613 0%, #8B0000 100%)';
-        logo.textContent = 'UGR';
-        logo.style.fontSize = '1.1rem';
-    }
 });
 
 // Add CSS for scroll animations and UGR styling
@@ -235,11 +235,3 @@ function trackEvent(eventName, data) {
     // Implement actual analytics tracking here
 }
 
-// Initialize tooltips and other interactive elements
-document.addEventListener('DOMContentLoaded', () => {
-    // Track page view
-    trackEvent('page_view', {
-        page: 'intensivo-3-home',
-        timestamp: new Date().toISOString()
-    });
-});
