@@ -3,6 +3,22 @@
 let currentStep = 1;
 const totalSteps = 3;
 
+const notify = (type, text) => {
+    if (window.showMessage) {
+        window.showMessage(type, text);
+    } else {
+        console[type === 'error' ? 'error' : 'log'](text);
+    }
+};
+
+const buildApiUrl = (path) => {
+    if (window.APP_CONFIG && typeof window.APP_CONFIG.getApiUrl === 'function') {
+        return window.APP_CONFIG.getApiUrl(path);
+    }
+    const base = 'http://localhost:3000';
+    return `${base}${path}`;
+};
+
 // Form validation rules
 const validationRules = {
     firstName: {
@@ -331,7 +347,7 @@ async function handleSubmit(e) {
     }
 
     if (!allValid) {
-        showMessage('error', 'Por favor, completa todos los campos correctamente');
+        notify('error', 'Por favor, completa todos los campos correctamente');
         return;
     }
 
@@ -347,7 +363,7 @@ async function handleSubmit(e) {
 
     try {
         // Send to backend API
-        const response = await fetch('http://localhost:3000/api/auth/register', {
+        const response = await fetch(buildApiUrl('/api/auth/register'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -379,41 +395,8 @@ async function handleSubmit(e) {
 
     } catch (error) {
         console.error('Registration error:', error);
-        showMessage('error', error.message || 'Error al procesar el registro. Por favor, inténtalo de nuevo.');
+        notify('error', error.message || 'Error al procesar el registro. Por favor, inténtalo de nuevo.');
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
     }
-}
-
-// Show message notification
-function showMessage(type, text) {
-    const message = document.createElement('div');
-    message.className = `message ${type}`;
-    message.textContent = text;
-
-    document.body.appendChild(message);
-    message.style.position = 'fixed';
-    message.style.top = '20px';
-    message.style.right = '20px';
-    message.style.zIndex = '3000';
-    message.style.padding = '1rem 1.5rem';
-    message.style.borderRadius = '8px';
-    message.style.fontWeight = '500';
-    message.style.maxWidth = '350px';
-    message.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-    message.style.animation = 'slideInRight 0.3s ease';
-
-    if (type === 'success') {
-        message.style.background = '#10b981';
-        message.style.color = 'white';
-    } else if (type === 'error') {
-        message.style.background = '#ef4444';
-        message.style.color = 'white';
-    }
-
-    setTimeout(() => {
-        if (document.body.contains(message)) {
-            document.body.removeChild(message);
-        }
-    }, 5000);
 }
