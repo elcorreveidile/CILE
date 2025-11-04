@@ -45,16 +45,50 @@ window.addEventListener('scroll', () => {
 });
 
 // Login form handler
-function handleLogin(e) {
+async function handleLogin(e) {
     e.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // TODO: Implement actual authentication
-    // For now, just show a message
-    showMessage('info', 'Funcionalidad de login en desarrollo. Próximamente disponible.');
+    // Show loading state
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Iniciando sesión...';
 
-    console.log('Login attempt:', { email, password: '***' });
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || 'Error al iniciar sesión');
+        }
+
+        // Store token and user data
+        localStorage.setItem('token', result.data.token);
+        localStorage.setItem('user', JSON.stringify(result.data.user));
+
+        // Show success message
+        showMessage('success', '¡Login exitoso! Redirigiendo...');
+
+        // Redirect to dashboard
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 1000);
+
+    } catch (error) {
+        console.error('Login error:', error);
+        showMessage('error', error.message || 'Credenciales inválidas');
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+    }
 }
 
 // QR Scanner handler

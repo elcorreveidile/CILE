@@ -346,32 +346,43 @@ async function handleSubmit(e) {
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
 
     try {
-        // TODO: Send to backend API
-        // For now, simulate API call
-        await simulateAPICall(data);
+        // Send to backend API
+        const response = await fetch('http://localhost:3000/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || 'Error al registrar usuario');
+        }
+
+        // Store token in localStorage
+        if (result.data && result.data.token) {
+            localStorage.setItem('token', result.data.token);
+            localStorage.setItem('user', JSON.stringify(result.data.user));
+        }
 
         // Show success message
         document.getElementById('registeredEmail').textContent = data.email;
         document.querySelector('.register-form').style.display = 'none';
         document.getElementById('successMessage').style.display = 'block';
 
-        // Log data (for development)
-        console.log('Registration data:', data);
+        // Redirect to dashboard after 3 seconds
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 3000);
 
     } catch (error) {
-        showMessage('error', 'Error al procesar el registro. Por favor, inténtalo de nuevo.');
+        console.error('Registration error:', error);
+        showMessage('error', error.message || 'Error al procesar el registro. Por favor, inténtalo de nuevo.');
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
     }
-}
-
-// Simulate API call
-function simulateAPICall(data) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({ success: true });
-        }, 2000);
-    });
 }
 
 // Show message notification
