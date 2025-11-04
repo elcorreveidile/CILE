@@ -9,7 +9,7 @@
     let baseUrl = metaContent;
 
     if (!baseUrl) {
-
+        baseUrl = 'http://localhost:3000';
     }
 
     baseUrl = baseUrl.replace(/\/$/, '');
