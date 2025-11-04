@@ -420,11 +420,7 @@ async function handleSubmit(e) {
 
     } catch (error) {
         console.error('Registration error:', error);
-        const apiBase = window.APP_CONFIG?.apiBaseUrl || 'desconocida';
-        const extraHint = error.message && /HTTP 40[45]|Respuesta inesperada/i.test(error.message)
-            ? ` Comprueba que el servidor de la API (${apiBase}) esté disponible y configurado correctamente.`
-            : '';
-        notify('error', (error.message || 'Error al procesar el registro. Por favor, inténtalo de nuevo.') + extraHint);
+
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
     }

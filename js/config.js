@@ -9,10 +9,7 @@
     let baseUrl = metaContent;
 
     if (!baseUrl) {
-        const origin = isHttpProtocol ? window.location.origin : '';
-        const hasValidOrigin = origin && origin !== 'null';
 
-        baseUrl = hasValidOrigin ? origin : 'http://localhost:3000';
     }
 
     baseUrl = baseUrl.replace(/\/$/, '');
