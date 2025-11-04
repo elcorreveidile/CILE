@@ -420,6 +420,7 @@ async function handleSubmit(e) {
 
     } catch (error) {
         console.error('Registration error:', error);
+        notify('error', error.message);
 
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
