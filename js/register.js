@@ -3,6 +3,22 @@
 let currentStep = 1;
 const totalSteps = 3;
 
+const notify = (type, text) => {
+    if (window.showMessage) {
+        window.showMessage(type, text);
+    } else {
+        console[type === 'error' ? 'error' : 'log'](text);
+    }
+};
+
+const buildApiUrl = (path) => {
+    if (window.APP_CONFIG && typeof window.APP_CONFIG.getApiUrl === 'function') {
+        return window.APP_CONFIG.getApiUrl(path);
+    }
+    const base = 'http://localhost:3000';
+    return `${base}${path}`;
+};
+
 // Form validation rules
 const validationRules = {
     firstName: {
@@ -331,13 +347,21 @@ async function handleSubmit(e) {
     }
 
     if (!allValid) {
-        showMessage('error', 'Por favor, completa todos los campos correctamente');
+        notify('error', 'Por favor, completa todos los campos correctamente');
         return;
     }
 
     // Gather form data
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+    const rawData = Object.fromEntries(formData.entries());
+
+    const data = {
+        ...rawData,
+        newsletter: rawData.newsletter ? rawData.newsletter === 'on' : false
+    };
+
+    delete data.confirmPassword;
+    delete data.terms;
 
     // Show loading state
     const submitButton = e.target.querySelector('button[type="submit"]');
@@ -347,7 +371,7 @@ async function handleSubmit(e) {
 
     try {
         // Send to backend API
-        const response = await fetch('http://localhost:3000/api/auth/register', {
+        const response = await fetch(buildApiUrl('/api/auth/register'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -355,11 +379,28 @@ async function handleSubmit(e) {
             body: JSON.stringify(data)
         });
 
-        const result = await response.json();
+        const contentType = response.headers.get('content-type') || '';
+        const isJsonResponse = contentType.includes('application/json');
+        const payload = isJsonResponse ? await response.json() : await response.text();
 
         if (!response.ok) {
-            throw new Error(result.message || 'Error al registrar usuario');
+            const serverMessage = isJsonResponse && payload && typeof payload === 'object'
+                ? payload.message
+                : '';
+            const errorMessage = serverMessage || `Error al registrar usuario (HTTP ${response.status})`;
+
+            if (!serverMessage && typeof payload === 'string') {
+                console.error('Respuesta inesperada del servidor:', payload);
+            }
+
+            throw new Error(errorMessage);
         }
+
+        if (!isJsonResponse || !payload || typeof payload !== 'object') {
+            throw new Error('Respuesta inesperada del servidor. Verifica la URL de la API y vuelve a intentarlo.');
+        }
+
+        const result = payload;
 
         // Store token in localStorage
         if (result.data && result.data.token) {
@@ -379,41 +420,12 @@ async function handleSubmit(e) {
 
     } catch (error) {
         console.error('Registration error:', error);
-        showMessage('error', error.message || 'Error al procesar el registro. Por favor, inténtalo de nuevo.');
+        const apiBase = window.APP_CONFIG?.apiBaseUrl || 'desconocida';
+        const extraHint = error.message && /HTTP 40[45]|Respuesta inesperada/i.test(error.message)
+            ? ` Comprueba que el servidor de la API (${apiBase}) esté disponible y configurado correctamente.`
+            : '';
+        notify('error', (error.message || 'Error al procesar el registro. Por favor, inténtalo de nuevo.') + extraHint);
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
     }
-}
-
-// Show message notification
-function showMessage(type, text) {
-    const message = document.createElement('div');
-    message.className = `message ${type}`;
-    message.textContent = text;
-
-    document.body.appendChild(message);
-    message.style.position = 'fixed';
-    message.style.top = '20px';
-    message.style.right = '20px';
-    message.style.zIndex = '3000';
-    message.style.padding = '1rem 1.5rem';
-    message.style.borderRadius = '8px';
-    message.style.fontWeight = '500';
-    message.style.maxWidth = '350px';
-    message.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-    message.style.animation = 'slideInRight 0.3s ease';
-
-    if (type === 'success') {
-        message.style.background = '#10b981';
-        message.style.color = 'white';
-    } else if (type === 'error') {
-        message.style.background = '#ef4444';
-        message.style.color = 'white';
-    }
-
-    setTimeout(() => {
-        if (document.body.contains(message)) {
-            document.body.removeChild(message);
-        }
-    }, 5000);
 }

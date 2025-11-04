@@ -120,7 +120,10 @@ docs/_build/
 # Documentación sensible
 secrets/
 private/
+# Directorios de configuración
 config/
+!backend/config/
+!backend/config/database.js
 
 # Archivos de estudiantes o datos personales
 student_data/
