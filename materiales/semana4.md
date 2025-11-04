@@ -245,6 +245,13 @@ Usa al menos:
 - **Usa el vocabulario nuevo**: intenta incorporar palabras aprendidas
 - **Habla sin miedo**: cometer errores es parte del aprendizaje
 
+### Nota Importante sobre el Horario
+**Los viernes no hay clases** - Este tiempo está diseñado para:
+- Estudio personal y repaso autónomo
+- Práctica con los recursos online del curso
+- Preparación del proyecto final
+- Conversación con compañeros fuera del aula
+
 ### Recursos Adicionales
 - **Apps**: Duolingo, Babbel, Memrise
 - **YouTube**: Canales para aprender español

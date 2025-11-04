@@ -8,15 +8,15 @@ Sitio web completo para el curso Intensivo 3 de español, diseñado para estudia
 
 ### 📚 **Contenido Educativo**
 - Programa curricular completo de 4 semanas
-- 64 horas lectivas distribuidas estratégicamente
+- 55 horas lectivas distribuidas estratégicamente
 - Nivel A2.1 del Marco Común Europeo
 - Metodología comunicativa y orientada a la acción
 
 ### ⏰ **Horario Flexible**
 - **Lunes, Martes, Miércoles**: 08:30 - 10:30
 - **Jueves**: 08:30 - 10:30 y 10:45 - 14:30
-- **Viernes**: 08:30 - 10:30
-- Total: 16 horas semanales
+- **Viernes**: No hay clases (tiempo para estudio personal)
+- Total: 13 horas 45 minutos semanales
 
 ### 🎯 **Objetivos del Curso**
 - Comprender frases y expresiones de uso frecuente
@@ -103,6 +103,7 @@ intensivo-3/
 - Proyecto final
 - Evaluación completa
 - Preparación para nivel B1
+- **Sin clases los viernes** para estudio personal y práctica autónoma
 
 ## Instalación y Uso
 
