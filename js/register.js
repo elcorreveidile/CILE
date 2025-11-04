@@ -379,11 +379,28 @@ async function handleSubmit(e) {
             body: JSON.stringify(data)
         });
 
-        const result = await response.json();
+        const contentType = response.headers.get('content-type') || '';
+        const isJsonResponse = contentType.includes('application/json');
+        const payload = isJsonResponse ? await response.json() : await response.text();
 
         if (!response.ok) {
-            throw new Error(result.message || 'Error al registrar usuario');
+            const serverMessage = isJsonResponse && payload && typeof payload === 'object'
+                ? payload.message
+                : '';
+            const errorMessage = serverMessage || `Error al registrar usuario (HTTP ${response.status})`;
+
+            if (!serverMessage && typeof payload === 'string') {
+                console.error('Respuesta inesperada del servidor:', payload);
+            }
+
+            throw new Error(errorMessage);
         }
+
+        if (!isJsonResponse || !payload || typeof payload !== 'object') {
+            throw new Error('Respuesta inesperada del servidor. Verifica la URL de la API y vuelve a intentarlo.');
+        }
+
+        const result = payload;
 
         // Store token in localStorage
         if (result.data && result.data.token) {
@@ -403,7 +420,7 @@ async function handleSubmit(e) {
 
     } catch (error) {
         console.error('Registration error:', error);
-        notify('error', error.message || 'Error al procesar el registro. Por favor, inténtalo de nuevo.');
+
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
     }
