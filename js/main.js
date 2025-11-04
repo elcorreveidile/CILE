@@ -44,38 +44,23 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Countdown timer for first class
-function updateCountdown() {
-    const today = new Date();
-    const targetTime = new Date();
-    targetTime.setHours(8, 30, 0, 0); // 08:30
+// Login form handler
+function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-    // If it's already past 8:30, set to tomorrow
-    if (today > targetTime) {
-        targetTime.setDate(targetTime.getDate() + 1);
-    }
+    // TODO: Implement actual authentication
+    // For now, just show a message
+    showMessage('info', 'Funcionalidad de login en desarrollo. Próximamente disponible.');
 
-    const now = new Date();
-    const diff = targetTime - now;
-
-    if (diff > 0) {
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        document.getElementById('countdown').textContent =
-            `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    } else {
-        document.getElementById('countdown').textContent = '¡En curso!';
-    }
+    console.log('Login attempt:', { email, password: '***' });
 }
 
-// Set today's date
-function setTodayDate() {
-    const today = new Date();
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    document.getElementById('today-date').textContent =
-        today.toLocaleDateString('es-ES', options);
+// QR Scanner handler
+function handleQRScan() {
+    // TODO: Implement QR code scanner
+    showMessage('info', 'Escáner QR en desarrollo. Próximamente disponible para control de asistencia.');
 }
 
 // Utility functions
@@ -92,11 +77,15 @@ function showMessage(type, text) {
     message.style.padding = '1rem 1.5rem';
     message.style.borderRadius = '8px';
     message.style.fontWeight = '500';
-    message.style.maxWidth = '300px';
+    message.style.maxWidth = '350px';
     message.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+    message.style.animation = 'slideInRight 0.3s ease';
 
     if (type === 'success') {
         message.style.background = '#10b981';
+        message.style.color = 'white';
+    } else if (type === 'info') {
+        message.style.background = '#3b82f6';
         message.style.color = 'white';
     } else {
         message.style.background = '#ef4444';
@@ -112,7 +101,7 @@ function showMessage(type, text) {
 
 // Welcome message for CLM students
 function showWelcomeMessage() {
-    showMessage('success', '¡Bienvenidos al Intensivo 3! Nos vemos en clase a las 08:30h');
+    showMessage('success', '¡Bienvenidos al Intensivo 3 del CLM-UGR! Aprende español a través de proyectos reales.');
 }
 
 // Scroll animations
@@ -130,19 +119,26 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize countdown and date
-    setTodayDate();
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
     // Show welcome message after a short delay
     setTimeout(showWelcomeMessage, 2000);
 
     // Observe elements for scroll animations
-    document.querySelectorAll('.card, .week-card, .schedule-container').forEach(el => {
+    document.querySelectorAll('.card, .week-card, .schedule-container, .project-card, .feature-item').forEach(el => {
         el.classList.add('scroll-animate');
         observer.observe(el);
     });
+
+    // Setup login form
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+    }
+
+    // Setup QR scan button
+    const scanQRBtn = document.getElementById('scanQR');
+    if (scanQRBtn) {
+        scanQRBtn.addEventListener('click', handleQRScan);
+    }
 
     // Track page view
     trackEvent('page_view', {
@@ -217,14 +213,16 @@ style.textContent = `
         color: var(--primary-color);
     }
 
-    .hero .info-card:nth-child(2) {
-        background: linear-gradient(135deg, var(--accent-color) 0%, #f97316 100%);
+    .btn-secondary {
+        background: var(--gradient-secondary);
         color: white;
+        border: none;
     }
 
-    .hero .info-card:nth-child(5) {
-        background: linear-gradient(135deg, var(--secondary-color) 0%, #2563eb 100%);
-        color: white;
+    .btn-secondary:hover {
+        background: #1e293b;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
     }
 `;
 document.head.appendChild(style);
