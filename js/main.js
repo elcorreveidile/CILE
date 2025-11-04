@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize countdown and date
     setTodayDate();
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+    // setInterval(updateCountdown, 1000); // Reloj detenido
 
     // Show welcome message after a short delay
     setTimeout(showWelcomeMessage, 2000);
