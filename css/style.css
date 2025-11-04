@@ -865,6 +865,23 @@ body {
     color: var(--primary-color);
 }
 
+.register-link {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+    text-align: center;
+}
+
+.register-link p {
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.register-link .btn {
+    margin-top: 0.5rem;
+}
+
 .checkin-section {
     margin-top: 2rem;
     padding-top: 2rem;
