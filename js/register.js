@@ -353,7 +353,15 @@ async function handleSubmit(e) {
 
     // Gather form data
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+    const rawData = Object.fromEntries(formData.entries());
+
+    const data = {
+        ...rawData,
+        newsletter: rawData.newsletter ? rawData.newsletter === 'on' : false
+    };
+
+    delete data.confirmPassword;
+    delete data.terms;
 
     // Show loading state
     const submitButton = e.target.querySelector('button[type="submit"]');
