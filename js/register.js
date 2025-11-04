@@ -377,6 +377,15 @@ async function handleSubmit(e) {
         return;
     }
 
+    // Check if backend is configured
+    if (window.APP_CONFIG && !window.APP_CONFIG.hasBackend) {
+        notify('error', 'El formulario no puede funcionar desde GitHub Pages sin una API configurada. Por favor, usa la versión local o configura una API en producción.');
+        console.error('❌ No backend configured. To fix this:');
+        console.error('1. Para desarrollo local: Abre el sitio desde http://localhost:8080');
+        console.error('2. Para producción: Agrega <meta name="api-base-url" content="https://tu-api.com"> en el HTML');
+        return;
+    }
+
     // Gather form data
     const formData = new FormData(e.target);
     const rawData = Object.fromEntries(formData.entries());
@@ -397,7 +406,10 @@ async function handleSubmit(e) {
 
     try {
         // Send to backend API
-        const response = await fetch(buildApiUrl('/api/auth/register'), {
+        const apiUrl = buildApiUrl('/api/auth/register');
+        console.log('Sending request to:', apiUrl);
+
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

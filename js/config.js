@@ -5,17 +5,32 @@
     const meta = document.querySelector('meta[name="api-base-url"]');
     const metaContent = meta && meta.content ? meta.content.trim() : '';
     const isHttpProtocol = ['http:', 'https:'].includes(window.location.protocol);
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
     let baseUrl = metaContent;
 
     if (!baseUrl) {
-        baseUrl = 'http://localhost:3000';
+        if (isGitHubPages) {
+            // En GitHub Pages sin URL de API configurada
+            console.warn('⚠️ GitHub Pages detectado sin URL de API configurada.');
+            console.warn('Por favor, agrega una meta tag con la URL de tu API:');
+            console.warn('<meta name="api-base-url" content="https://tu-api.com">');
+            baseUrl = ''; // Sin backend configurado
+        } else if (isLocalhost) {
+            baseUrl = 'http://localhost:3000';
+        } else {
+            baseUrl = 'http://localhost:3000';
+        }
     }
 
     baseUrl = baseUrl.replace(/\/$/, '');
 
     window.APP_CONFIG = window.APP_CONFIG || {};
     window.APP_CONFIG.apiBaseUrl = baseUrl;
+    window.APP_CONFIG.isGitHubPages = isGitHubPages;
+    window.APP_CONFIG.isLocalhost = isLocalhost;
+    window.APP_CONFIG.hasBackend = !!baseUrl;
     window.APP_CONFIG.getApiUrl = function (path = '') {
         if (!path) {
             return baseUrl;
