@@ -3,7 +3,9 @@
    Área privada de estudiantes del Intensivo 3
    ======================================== */
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = (window.APP_CONFIG && typeof window.APP_CONFIG.getApiUrl === 'function')
+    ? window.APP_CONFIG.getApiUrl('/api')
+    : 'http://localhost:3000/api';
 
 // Estado global de la aplicación
 const appState = {
@@ -815,8 +817,14 @@ async function updateUserProfile() {
    ======================================== */
 
 function showAlert(message, type = 'info') {
+    if (window.showMessage) {
+        window.showMessage(type, message);
+        return;
+    }
+
     const alertDiv = document.createElement('div');
     alertDiv.className = `alert alert-${type}`;
+    alertDiv.setAttribute('role', type === 'error' ? 'alert' : 'status');
 
     const icons = {
         success: 'fa-check-circle',

@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intensivo 3 - Curso de Español Nivel A2.1</title>
     <meta name="description" content="Curso intensivo de español nivel A2.1. 4 semanas de inmersión total en el idioma con horario flexible y metodología comunicativa.">
     <meta name="keywords" content="curso español, A2.1, intensivo, aprender español, DELE">
+    <meta name="api-base-url" content="">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Intensivo 3 - Curso de Español Nivel A2.1 | CLM-UGR">
     <meta property="og:description" content="Curso intensivo de español nivel A2.1 en el Centro de Lenguas Modernas de la Universidad de Granada. 55 horas lectivas en 4 semanas.">
+    <meta property="og:image" content="images/banner/hero-bg.jpg">
     <meta property="og:site_name" content="CLM-UGR Intensivo 3">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Intensivo 3 - Curso de Español Nivel A2.1">
     <meta name="twitter:description" content="Curso intensivo de español nivel A2.1 en el Centro de Lenguas Modernas de la Universidad de Granada.">
+    <meta name="twitter:image" content="images/banner/hero-bg.jpg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23E30613'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white'>I3</text></svg>">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="js/config.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -31,18 +35,18 @@
             <div class="nav-brand">
                 <img src="images/banner/Logo-CLM-V1.jpg" alt="Centro de Lenguas Modernas UGR" class="logo-img">
                 <div class="brand-text">
-                    <h1>Intensivo 3</h1>
+                    <p class="brand-title">Intensivo 3</p>
                     <p>Curso de Español Nivel A2.1</p>
                 </div>
             </div>
-            <ul class="nav-menu" role="menubar">
+            <ul class="nav-menu" id="primary-navigation" role="menubar">
                 <li role="none"><a href="#inicio" role="menuitem">Inicio</a></li>
                 <li role="none"><a href="#proyectos" role="menuitem">Proyectos</a></li>
                 <li role="none"><a href="#horario" role="menuitem">Horario</a></li>
                 <li role="none"><a href="#metodologia" role="menuitem">Metodología</a></li>
                 <li role="none"><a href="#login" role="menuitem" class="nav-login"><i class="fas fa-user-lock"></i> Área Alumnos</a></li>
             </ul>
-            <button class="hamburger" aria-label="Menú de navegación" aria-expanded="false">
+            <button class="hamburger" aria-label="Menú de navegación" aria-expanded="false" aria-controls="primary-navigation">
                 <span></span>
                 <span></span>
                 <span></span>

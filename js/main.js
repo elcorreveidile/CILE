@@ -2,19 +2,42 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
+const notify = (type, text) => {
+    if (window.showMessage) {
+        window.showMessage(type, text);
+    } else {
+        console[type === 'error' ? 'error' : 'log'](text);
+    }
+};
+
+const buildApiUrl = (path) => {
+    if (window.APP_CONFIG && typeof window.APP_CONFIG.getApiUrl === 'function') {
+        return window.APP_CONFIG.getApiUrl(path);
+    }
+    const base = 'http://localhost:3000';
+    return `${base}${path}`;
+};
+
 // Toggle Mobile Menu
-hamburger.addEventListener('click', () => {
-    const isActive = hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isActive);
-});
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        const isActive = hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isActive);
+        if (isActive) {
+            navMenu.querySelector('a')?.focus();
+        }
+    });
+}
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
     });
 });
 
@@ -57,7 +80,7 @@ async function handleLogin(e) {
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Iniciando sesión...';
 
     try {
-        const response = await fetch('http://localhost:3000/api/auth/login', {
+        const response = await fetch(buildApiUrl('/api/auth/login'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -76,7 +99,7 @@ async function handleLogin(e) {
         localStorage.setItem('user', JSON.stringify(result.data.user));
 
         // Show success message
-        showMessage('success', '¡Login exitoso! Redirigiendo...');
+        notify('success', '¡Login exitoso! Redirigiendo...');
 
         // Redirect to dashboard
         setTimeout(() => {
@@ -85,7 +108,7 @@ async function handleLogin(e) {
 
     } catch (error) {
         console.error('Login error:', error);
-        showMessage('error', error.message || 'Credenciales inválidas');
+        notify('error', error.message || 'Credenciales inválidas');
         submitButton.disabled = false;
         submitButton.innerHTML = originalText;
     }
@@ -94,48 +117,12 @@ async function handleLogin(e) {
 // QR Scanner handler
 function handleQRScan() {
     // TODO: Implement QR code scanner
-    showMessage('info', 'Escáner QR en desarrollo. Próximamente disponible para control de asistencia.');
-}
-
-// Utility functions
-function showMessage(type, text) {
-    const message = document.createElement('div');
-    message.className = `message ${type}`;
-    message.textContent = text;
-
-    document.body.appendChild(message);
-    message.style.position = 'fixed';
-    message.style.top = '20px';
-    message.style.right = '20px';
-    message.style.zIndex = '3000';
-    message.style.padding = '1rem 1.5rem';
-    message.style.borderRadius = '8px';
-    message.style.fontWeight = '500';
-    message.style.maxWidth = '350px';
-    message.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-    message.style.animation = 'slideInRight 0.3s ease';
-
-    if (type === 'success') {
-        message.style.background = '#10b981';
-        message.style.color = 'white';
-    } else if (type === 'info') {
-        message.style.background = '#3b82f6';
-        message.style.color = 'white';
-    } else {
-        message.style.background = '#ef4444';
-        message.style.color = 'white';
-    }
-
-    setTimeout(() => {
-        if (document.body.contains(message)) {
-            document.body.removeChild(message);
-        }
-    }, 5000);
+    notify('info', 'Escáner QR en desarrollo. Próximamente disponible para control de asistencia.');
 }
 
 // Welcome message for CLM students
 function showWelcomeMessage() {
-    showMessage('success', '¡Bienvenidos al Intensivo 3 del CLM-UGR! Aprende español a través de proyectos reales.');
+    notify('success', '¡Bienvenidos al Intensivo 3 del CLM-UGR! Aprende español a través de proyectos reales.');
 }
 
 // Scroll animations
