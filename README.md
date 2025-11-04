@@ -2,7 +2,7 @@
 
 ## Descripción del Proyecto
 
-Sitio web completo para el curso Intensivo 3 de español, diseñado para estudiantes de nivel A2.1 que quieren consolidar sus conocimientos básicos y alcanzar fluidez en comunicaciones cotidianas.
+Sitio web informativo para el curso Intensivo 3 de español, diseñado específicamente para alumnos del Centro de Lenguas Modernas de la Universidad de Granada (CLM-UGR). El curso está enfocado para estudiantes de nivel A2.1 que quieren consolidar sus conocimientos básicos y alcanzar fluidez en comunicaciones cotidianas.
 
 ## Características Principales
 
@@ -54,11 +54,11 @@ intensivo-3/
 
 ## Funcionalidades
 
-### 📝 **Sistema de Inscripción**
-- Formulario completo con validación
-- Almacenamiento local de datos
-- Confirmación automática
-- Diseño responsivo
+### 📝 **Información para Alumnos**
+- Sección dedicada para estudiantes del CLM
+- Detalles de horario y ubicación
+- Información sobre materiales y certificación
+- Contacto directo con el centro
 
 ### 🎨 **Diseño Visual**
 - Paleta de colores profesional
@@ -74,9 +74,9 @@ intensivo-3/
 
 ### ⚡ **Interactividad**
 - Navegación suave entre secciones
-- Formularios con validación en tiempo real
+- Cuenta regresiva para primera clase
 - Animaciones al hacer scroll
-- Mensajes de confirmación
+- Mensajes de bienvenida informativos
 
 ## Contenido Educativo
 
@@ -119,8 +119,8 @@ intensivo-3/
 
 ### Personalización
 - Editar `css/style.css` para modificar estilos
-- Editar `js/main.js` para cambiar funcionalidad
-- Modificar `index.html` para ajustar contenido
+- Editar `js/main.js` para ajustar interactividad
+- Modificar `index.html` para actualizar información del CLM
 - Actualizar materiales en la carpeta `materiales/`
 
 ## Características Técnicas
@@ -131,9 +131,9 @@ intensivo-3/
 - Títulos y descripciones optimizadas
 
 ### 🔒 **Seguridad**
-- Sin procesamiento de datos sensibles
-- Validación del lado del cliente
-- Almacenamiento local no crítico
+- Información institucional UGR
+- Sin procesamiento de datos personales
+- Contenido educativo seguro
 
 ### 🚀 **Performance**
 - Optimizado para carga rápida
@@ -149,15 +149,15 @@ intensivo-3/
 
 ### Actualizaciones de Contenido
 - Modificar textos en `index.html`
-- Actualizar fechas de convocatoria
-- Cambiar precios si es necesario
+- Actualizar información del CLM
+- Cambiar horarios según necesidades académicas
 - Añadir nuevos materiales educativos
 
-### Mejoras Técnicas
-- Optimizar imágenes para web
-- Minificar CSS y JavaScript
-- Implementar lazy loading
-- Añadir más funcionalidades según necesidades
+### Mejoras para UGR
+- Integración con plataforma CLM
+- Optimización para red universitaria
+- Añadir recursos institucionales
+- Implementar seguimiento académico
 
 ## Licencia
 
@@ -172,14 +172,23 @@ Las contribuciones son bienvenidas. Por favor:
 4. Push a la rama
 5. Crear un Pull Request
 
-## Contacto
+## Contacto CLM-UGR
 
 Para más información sobre el curso Intensivo 3:
-- **Email**: info@intensivo3.es
-- **Teléfono**: +34 900 123 456
-- **Sitio web**: https://intensivo3.github.io/intensivo-3/
+- **Email**: clm@ugr.es
+- **Teléfono**: 958 24 35 35
+- **Dirección**: Plaza de la Universidad, s/n, Granada
+- **Web**: https://clm.ugr.es
+
+## Información Académica
+
+- **Centro**: Centro de Lenguas Modernas - Universidad de Granada
+- **Nivel**: A2.1 (Marco Común Europeo)
+- **Duración**: 4 semanas intensivas
+- **Certificado**: Oficial del CLM-UGR
+- **Profesorado**: Docentes especializados en ELE
 
 ---
 
-**¡Gracias por visitar el curso Intensivo 3!**
-*Aprende español de forma intensiva y efectiva.*
+**¡Bienvenidos al Intensivo 3 del CLM-UGR!**
+*Curso intensivo de español para la comunidad universitaria.*

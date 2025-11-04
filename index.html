@@ -25,7 +25,7 @@
                 <li><a href="#horario">Horario</a></li>
                 <li><a href="#programa">Programa</a></li>
                 <li><a href="#metodologia">Metodología</a></li>
-                <li><a href="#inscripcion">Inscripción</a></li>
+                <li><a href="#alumnos">Alumnos CLM</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -44,8 +44,13 @@
             <div class="hero-info">
                 <div class="info-card">
                     <i class="fas fa-calendar-alt"></i>
-                    <h3>Duración</h3>
-                    <p>4 semanas intensivas</p>
+                    <h3>Empieza Hoy</h3>
+                    <p id="today-date"></p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Primera Clase</h3>
+                    <p id="countdown"></p>
                 </div>
                 <div class="info-card">
                     <i class="fas fa-clock"></i>
@@ -58,16 +63,16 @@
                     <p>Máximo 12 estudiantes</p>
                 </div>
                 <div class="info-card">
-                    <i class="fas fa-language"></i>
-                    <h3>Nivel</h3>
-                    <p>A2.1 (Elemental)</p>
+                    <i class="fas fa-university"></i>
+                    <h3>Centro</h3>
+                    <p>Lenguas Modernas UGR</p>
                 </div>
             </div>
 
             <div class="highlight-box">
-                <h3>🔥 Próxima Convocatoria: Enero 2025</h3>
-                <p>Plazas limitadas. ¡Reserva la tuya ahora!</p>
-                <a href="#inscripcion" class="btn btn-primary">Inscribirse Ahora</a>
+                <h3>🎓 ¡Bienvenidos al CLM!</h3>
+                <p>Curso intensivo para alumnos del Centro de Lenguas Modernas de la Universidad de Granada</p>
+                <a href="#alumnos" class="btn btn-primary">Ver Información del Curso</a>
             </div>
         </div>
     </section>
@@ -355,108 +360,95 @@
         </div>
     </section>
 
-    <!-- Inscripción -->
-    <section id="inscripcion" class="section">
+    <!-- Información para Alumnos -->
+    <section id="alumnos" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Inscripción al Curso</h2>
-                <p>Completa el formulario y asegura tu plaza en el próximo Intensivo 3</p>
+                <h2>Bienvenidos al Intensivo 3</h2>
+                <p>Información importante para los alumnos del Centro de Lenguas Modernas - UGR</p>
             </div>
 
-            <div class="enrollment-form">
-                <h3 class="text-center mb-2">Formulario de Preinscripción</h3>
-                <p class="text-center" style="color: var(--text-light); margin-bottom: 2rem;">
-                    <span class="badge">Plazas limitadas: 12 estudiantes</span>
-                </p>
-
-                <form id="enrollmentForm">
-                    <div class="form-group">
-                        <label for="name">Nombre Completo *</label>
-                        <input type="text" id="name" name="name" required>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-check"></i>
                     </div>
+                    <h3>El Curso Empieza Hoy</h3>
+                    <p>¡Nos vemos en clase! Primera sesión a las 08:30h. Asegúrate de llegar 10 minutos antes.</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
+                    <h3>Ubicación</h3>
+                    <p>Centro de Lenguas Modernas - Universidad de Granada. Consulta tu aula asignada en la recepción.</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="phone">Teléfono *</label>
-                        <input type="tel" id="phone" name="phone" required>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-book"></i>
                     </div>
+                    <h3>Material Didáctico</h3>
+                    <p>Todos los materiales están incluidos. Trae cuaderno y bolígrafos. El resto lo proporcionamos nosotros.</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="age">Edad *</label>
-                        <input type="number" id="age" name="age" min="16" max="99" required>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
                     </div>
+                    <h3>Grupo Reducido</h3>
+                    <p>Trabajaremos en grupos pequeños para máxima atención personalizada y participación activa.</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="nationality">Nacionalidad *</label>
-                        <input type="text" id="nationality" name="nationality" required>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-certificate"></i>
                     </div>
+                    <h3>Certificado</h3>
+                    <p>Al finalizar recibirás un certificado oficial del Centro de Lenguas Modernas de la UGR.</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="current_level">Nivel actual de español *</label>
-                        <select id="current_level" name="current_level" required>
-                            <option value="">Selecciona tu nivel</option>
-                            <option value="beginner">Principiante absoluto (A1)</option>
-                            <option value="elemental">Elemental (A1-A2)</option>
-                            <option value="pre-a2">Pre-intermedio (接近 A2)</option>
-                            <option value="a2">A2 (quiero repasar)</option>
-                        </select>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-headset"></i>
                     </div>
+                    <h3>Soporte</h3>
+                    <p>Para cualquier duda o consulta, contacta con la secretaría del CLM o habla directamente con tu profesor.</p>
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        <label for="motivation">¿Por qué quieres aprender español? *</label>
-                        <textarea id="motivation" name="motivation" rows="3" required
-                                  placeholder="Ej: Por trabajo, estudio, viajar, interés personal..."></textarea>
+            <div class="highlight-box">
+                <h3>📚 Horario del Curso - ¡Empezamos Hoy!</h3>
+                <p><strong>Lunes, Martes, Miércoles:</strong> 08:30 - 10:30h</p>
+                <p><strong>Jueves:</strong> 08:30 - 10:30h y 10:45 - 14:30h</p>
+                <p><strong>Viernes:</strong> No hay clases (tiempo de estudio personal)</p>
+                <p><strong>Total:</strong> 55 horas lectivas durante 4 semanas</p>
+            </div>
+
+            <div class="content-grid" style="margin-top: 3rem;">
+                <div class="card" style="background: linear-gradient(135deg, #E30613 0%, #b71c1c 100%); color: white;">
+                    <div class="card-icon" style="background: rgba(255,255,255,0.2);">
+                        <i class="fas fa-graduation-cap" style="color: white;"></i>
                     </div>
+                    <h3 style="color: white;">Nivel A2.1</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Perfecto para consolidar conocimientos básicos y alcanzar fluidez en comunicación cotidiana.</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="start_date">Fecha de inicio preferida *</label>
-                        <select id="start_date" name="start_date" required>
-                            <option value="">Selecciona una fecha</option>
-                            <option value="2025-01-06">6 de Enero 2025</option>
-                            <option value="2025-02-03">3 de Febrero 2025</option>
-                            <option value="2025-03-03">3 de Marzo 2025</option>
-                            <option value="2025-04-07">7 de Abril 2025</option>
-                        </select>
+                <div class="card" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white;">
+                    <div class="card-icon" style="background: rgba(255,255,255,0.2);">
+                        <i class="fas fa-comments" style="color: white;"></i>
                     </div>
+                    <h3 style="color: white;">Metodología Activa</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Aprenderás hablando desde el primer día con actividades prácticas y comunicativas.</p>
+                </div>
 
-                    <div class="form-group">
-                        <label for="experience">¿Has estudiado español antes?</label>
-                        <select id="experience" name="experience">
-                            <option value="no">No, es mi primera vez</option>
-                            <option value="self">Sí, por mi cuenta</option>
-                            <option value="classes">Sí, he tomado clases antes</option>
-                            <option value="other">Otro</option>
-                        </select>
+                <div class="card" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white;">
+                    <div class="card-icon" style="background: rgba(255,255,255,0.2);">
+                        <i class="fas fa-clock" style="color: white;"></i>
                     </div>
-
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" name="terms" required>
-                            Acepto los términos y condiciones y la política de privacidad *
-                        </label>
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" name="newsletter">
-                            Deseo recibir información sobre futuros cursos y eventos
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <i class="fas fa-paper-plane"></i> Enviar Solicitud de Inscripción
-                    </button>
-                </form>
-
-                <div class="highlight-box" style="margin-top: 2rem;">
-                    <h3>💰 Información de Precios</h3>
-                    <p class="price-tag">580€ - Curso completo de 4 semanas</p>
-                    <p>Incluye: todas las clases, materiales didácticos, certificado y acceso a plataforma online</p>
-                    <p><strong>Descuentos especiales:</strong> 10% para estudiantes y desempleados</p>
+                    <h3 style="color: white;">Horario Flexible</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Diseñado para compatibilizar con tus estudios y responsabilidades en la UGR.</p>
                 </div>
             </div>
         </div>
@@ -466,8 +458,8 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Intensivo 3</h4>
-                <p>Curso de español intensivo nivel A2.1 diseñado para estudiantes que quieren dominar los fundamentos del idioma.</p>
+                <h4>Intensivo 3 - CLM UGR</h4>
+                <p>Curso de español intensivo nivel A2.1 para alumnos del Centro de Lenguas Modernas de la Universidad de Granada.</p>
             </div>
 
             <div class="footer-section">
@@ -477,32 +469,33 @@
                     <li><a href="#horario">Horario</a></li>
                     <li><a href="#programa">Programa</a></li>
                     <li><a href="#metodologia">Metodología</a></li>
-                    <li><a href="#inscripcion">Inscripción</a></li>
+                    <li><a href="#alumnos">Alumnos CLM</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Información de Contacto</h4>
+                <h4>Centro de Lenguas Modernas</h4>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> info@intensivo3.es</li>
-                    <li><i class="fas fa-phone"></i> +34 900 123 456</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Madrid, España</li>
+                    <li><i class="fas fa-envelope"></i> clm@ugr.es</li>
+                    <li><i class="fas fa-phone"></i> 958 24 35 35</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Plaza de la Universidad, s/n<br>Granada, España</li>
+                    <li><i class="fas fa-globe"></i> clm.ugr.es</li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Síguenos</h4>
+                <h4>Universidad de Granada</h4>
                 <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <a href="#" style="font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
-                    <a href="#" style="font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                    <a href="#" style="font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
-                    <a href="#" style="font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://clm.ugr.es" target="_blank" style="font-size: 1.5rem;"><i class="fas fa-university"></i></a>
+                    <a href="https://ugr.es" target="_blank" style="font-size: 1.5rem;"><i class="fas fa-globe"></i></a>
+                    <a href="https://facebook.com/CLMUGR" target="_blank" style="font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/UGR" target="_blank" style="font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2024 Intensivo 3 - Curso de Español. Todos los derechos reservados.</p>
+            <p>&copy; 2024 Centro de Lenguas Modernas - Universidad de Granada. Curso Intensivo 3 - Español A2.1</p>
         </div>
     </footer>
 
