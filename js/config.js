@@ -4,10 +4,12 @@
 
     const meta = document.querySelector('meta[name="api-base-url"]');
     const metaContent = meta && meta.content ? meta.content.trim() : '';
+    const isHttpProtocol = ['http:', 'https:'].includes(window.location.protocol);
+
     let baseUrl = metaContent;
 
     if (!baseUrl) {
-        const origin = window.location.origin;
+        const origin = isHttpProtocol ? window.location.origin : '';
         const hasValidOrigin = origin && origin !== 'null';
 
         baseUrl = hasValidOrigin ? origin : 'http://localhost:3000';
