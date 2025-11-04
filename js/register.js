@@ -97,7 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Navigation functions
 function nextStep(step) {
+    console.log('nextStep called with step:', step);
+
     if (validateStep(step)) {
+        console.log('Validation passed, moving to next step');
         // Mark current step as completed
         document.querySelector(`.step[data-step="${step}"]`).classList.add('completed');
 
@@ -113,6 +116,9 @@ function nextStep(step) {
 
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        console.log('Validation failed for step:', step);
+        notify('error', 'Por favor, completa todos los campos obligatorios correctamente');
     }
 }
 
@@ -133,15 +139,29 @@ function prevStep(step) {
 
 // Validation functions
 function validateStep(step) {
+    console.log('validateStep called for step:', step);
     const stepElement = document.getElementById(`step${step}`);
+
+    if (!stepElement) {
+        console.error('Step element not found:', `step${step}`);
+        return false;
+    }
+
     const inputs = stepElement.querySelectorAll('input, select');
+    console.log('Found inputs:', inputs.length);
     let isValid = true;
+    let invalidFields = [];
 
     inputs.forEach(input => {
         if (!validateField(input)) {
             isValid = false;
+            invalidFields.push(input.name || input.id);
         }
     });
+
+    if (!isValid) {
+        console.log('Invalid fields:', invalidFields);
+    }
 
     return isValid;
 }
@@ -150,7 +170,10 @@ function validateField(field) {
     const fieldName = field.name;
     const rules = validationRules[fieldName];
 
-    if (!rules) return true;
+    if (!rules) {
+        console.log('No validation rules for:', fieldName);
+        return true;
+    }
 
     const value = field.value.trim();
     const errorElement = field.parentElement.querySelector('.error-message');
@@ -203,11 +226,14 @@ function validateField(field) {
 }
 
 function showError(field, message) {
+    console.log('showError:', field.name || field.id, '-', message);
     field.classList.add('error');
     const errorElement = field.parentElement.querySelector('.error-message');
     if (errorElement) {
         errorElement.textContent = message;
         errorElement.classList.add('show');
+    } else {
+        console.warn('No error element found for field:', field.name || field.id);
     }
 }
 
