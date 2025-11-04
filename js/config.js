@@ -4,25 +4,13 @@
 
     const meta = document.querySelector('meta[name="api-base-url"]');
     const metaContent = meta && meta.content ? meta.content.trim() : '';
-    const isHttpProtocol = ['http:', 'https:'].includes(window.location.protocol);
-
     let baseUrl = metaContent;
 
     if (!baseUrl) {
-        if (isHttpProtocol && window.location.origin) {
-            const { hostname, protocol, port } = window.location;
-            const isLocalhost = ['localhost', '127.0.0.1', '::1'].includes(hostname);
+        const origin = window.location.origin;
+        const hasValidOrigin = origin && origin !== 'null';
 
-            if (isLocalhost && port !== '3000') {
-                baseUrl = `${protocol}//${hostname}:3000`;
-            } else if (isLocalhost && !port) {
-                baseUrl = `${protocol}//${hostname}:3000`;
-            } else {
-                baseUrl = window.location.origin;
-            }
-        } else {
-            baseUrl = 'http://localhost:3000';
-        }
+        baseUrl = hasValidOrigin ? origin : 'http://localhost:3000';
     }
 
     baseUrl = baseUrl.replace(/\/$/, '');
